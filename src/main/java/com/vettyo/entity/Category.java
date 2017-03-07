@@ -14,6 +14,7 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue
+
     private int cid;
     private String cname;
     @OneToMany(cascade = CascadeType.ALL)

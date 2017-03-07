@@ -34,6 +34,22 @@ public class CategoryController {
     }
 
     @Transactional
+    @RequestMapping(value = "updatecategory/{cid}",method = RequestMethod.PUT)
+    @ResponseBody
+    public String updateCategory(@RequestBody Category category,@PathVariable("cid") int cid) throws SQLException{
+        Category category1=new Category();
+        session=sessionFactory.getCurrentSession();
+        category1= (Category) session.get(Category.class,cid);
+ //       category1.setCname(category.getCname());
+        category1.setAds(category.getAds());
+        System.out.println(category1.getCname());
+     //
+        //   category1.setCid(category.getCid());
+        session.save(category1);
+        return "succesful";
+    }
+
+    @Transactional
     @RequestMapping(value = "category/{id}",method = RequestMethod.POST)
     @ResponseBody
     public Category getById(@PathVariable int id)  throws SQLException {
